@@ -1,6 +1,11 @@
 let foodPosX = undefined;
 let foodPosY = undefined;
 
+let snakeHorizontalSpeed = 0;
+let snakeVerticalSpeed = 0;
+
+gameRunning = true;
+
 //when window loads
 let loadUp = ()=>{
     //get access to canvas vai DOM
@@ -17,6 +22,7 @@ let loadUp = ()=>{
     ctx.height = column *blockSize;
     //randomly place food when window loads
     randomFood();
+    document.addEventListener("keydown",snakeMove)
 }
 
 //funciton to randomly place food
@@ -26,6 +32,38 @@ let randomFood = ()=>{
     full dimension, it will an error as it wil round up*/
     foodPosX = Math.floor(Math.random()*row*blockSize);
     foodPosY = Math.floor(Math.random()*column*blockSize);
+}
+
+let snakeMove = props =>{
+    if(props.code == "ArrowUp" && snakeVerticalSpeed !=1){
+        snakeVerticalSpeed = -1;
+        //set horizontal seed to 0, for example if user preesed it previosuly
+        snakeHorizontalSpeed = 0;
+    } //remebr snake can not go in opposite direction (real life scenario)
+    if(props.code == "ArrowDown" && snakeVerticalSpeed !=-1){
+        snakeVerticalSpeed = 1;
+        //Same logic as above
+        snakeHorizontalSpeed = 0;
+    }
+    if(props.code == "ArrowLeft" && snakeHorizontalSpeed !=1){
+        snakeHorizontalSpeed = -1;
+        //set vertical seed to 0, for example if user preesed it previosuly
+        snakeVerticalSpeed = 0
+    }
+    if(props.code == "ArrowRight" && snakeHorizontalSpeed !=-1){
+        snakeHorizontalSpeed = 1;
+
+        //Same logic as before
+        snakeVerticalSpeed = 0;
+    }
+
+}
+
+let gameLoop = ()=>{
+    //test if game is over
+    if(!(gameRunning)){
+        return 0; //so game end
+    }
 }
 
 /*lets not create the widht or height in the CSS or HTML, but

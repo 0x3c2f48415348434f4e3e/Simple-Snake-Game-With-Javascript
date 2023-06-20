@@ -2,10 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: white;
+    text-align: center;
 }
 
 body{
-    max-width: 100vh;
+    min-height: 100vh;
     background-color: black;
 }
 
@@ -13,6 +15,6 @@ canvas{
     border: solid 1px white;
     background-color: green;
     position: absolute;
-    top: 210px;
-    left: 350px;
+    top: 50px;
+    left: 20px;
 }
