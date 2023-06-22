@@ -24,6 +24,7 @@ let loadUp = ()=>{
     //set width and height
     canvas1.width = row * blockSize;
     canvas1.height = column *blockSize;
+    console.log(canvas1.width,canvas1.height)
     //randomly place food when window loads
     randomFood();
     //console.log(foodPosX,foodPosY)
@@ -36,8 +37,9 @@ let randomFood = ()=>{
     //set pos of X and Y
     /*use floor and not ceil as if for example random is position of 
     full dimension, it will an error as it wil round up*/
-    foodPosX = Math.floor(Math.random()*(row*blockSize)); //random int between 0 and total dimension
-    foodPosY = Math.floor(Math.random()*(column*blockSize));
+    foodPosX = Math.floor(Math.random()*((row*blockSize) - blockSize)); //random int between 0 and total dimension
+    foodPosY = Math.floor(Math.random()*((column*blockSize) - blockSize));
+    console.log(foodPosX,foodPosY)
 }
 
 let snakeMove = props =>{
